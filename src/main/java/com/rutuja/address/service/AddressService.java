@@ -7,6 +7,8 @@ import com.rutuja.address.beans.DistrictBean;
 import com.rutuja.address.beans.StateBean;
 import com.rutuja.address.entity.AddressModel;
 import com.rutuja.address.repo.AddressRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -24,6 +26,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class AddressService {
+
+    Logger log= LoggerFactory.getLogger(this.getClass());
     @Autowired
     private AddressRepository addressRepository;
     @Autowired
@@ -45,6 +49,7 @@ public class AddressService {
     public Mono<AddressResponseBean> getAddressbyId(Integer addressId) throws Exception {
         Optional<AddressModel> addressModelOptional = addressRepository.findById(addressId);
         if(addressModelOptional.isPresent()){
+            log.debug("Id is present in db");
             AddressModel addressModel =addressModelOptional.get();
                 AddressResponseBean addressResponseBean = new AddressResponseBean();
                 addressResponseBean.setAddressId(addressModel.getAddressid());
