@@ -58,16 +58,19 @@ public class AddressService {
                 Mono<StateBean> stateBeanMono=   webClientBuilder.build()
                     .get()
                     .uri("http://STATE" + stateContextName + addressModel.getStateId())
+                        .headers(headers->headers.setBasicAuth("root","root"))
                     .retrieve()
                     .bodyToMono(StateBean.class);
             Mono<CountryBean> countryBeanMono=webClientBuilder.build()
                         .get()
                         .uri("http://COUNTRY" + countryContextName + addressModel.getCountryId())
+                    .headers(headers->headers.setBasicAuth("countryUser","countryUser"))
                         .retrieve()
                         .bodyToMono(CountryBean.class);
             Mono<DistrictBean> districtBeanMono =webClientBuilder.build()
                         .get()
                         .uri("http://DISTRICT" + districtContextPath + addressModel.getDistrictId())
+                    .headers(headers->headers.setBasicAuth("user","user"))
                         .retrieve()
                         .bodyToMono(DistrictBean.class);
             return  Mono.zip(stateBeanMono,districtBeanMono,countryBeanMono).map(tuple -> {
