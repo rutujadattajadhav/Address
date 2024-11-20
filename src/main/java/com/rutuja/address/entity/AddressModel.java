@@ -1,31 +1,32 @@
 package com.rutuja.address.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Data;
 
-@Entity(name = "address")
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
+@Table(name = "address")
 @Data
 public class AddressModel {
 
     @Id
-    @Column(name = "addressId")
+    @Column(value = "addressId")
     private Integer addressid;
 
-    @Column(name = "line1")
+    @Column(value = "line1")
     private String line1;
 
-    @Column(name = "line2")
+    @Column(value = "line2")
     private String line2;
 
-    @Column(name = "districtId")
+    @Column(value = "districtId")
     private Integer districtId;
 
-    @Column(name="stateId")
+    @Column(value="stateId")
     private Integer stateId;
 
-    @Column(name = "countryId")
+    @Column(value = "countryId")
     private Integer countryId;
 
 }
