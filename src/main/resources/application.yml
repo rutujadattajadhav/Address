@@ -5,11 +5,6 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: validate
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/practice
-    username: root
-    password: root
   application:
     name: ADDRESS
   config:
@@ -31,11 +26,3 @@ management:
   tracing:
     sampling:
       probability: 1.0
-logging:
-  level:
-    root: info
-    web: debug
-    reactor:
-      netty:
-        http:
-          client: DEBUG
