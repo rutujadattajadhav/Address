@@ -94,7 +94,7 @@ public class AddressService {
         setAddressFields(addressModel, addressResponseBean);
 
         Mono<StateBean> stateBeanMono = makeWebClientCall("http://STATE" + stateContextName +"/stateById/"+ addressModel.getStateId(), STATE_USER, STATE_PASSWORD, StateBean.class);
-        Mono<CountryBean> countryBeanMono = makeWebClientCall("http://COUNTRY" + countryContextName +"/getCountry/"+ addressModel.getCountryId(), COUNTRY_USER, COUNTRY_PASSWORD, CountryBean.class);
+        Mono<CountryBean> countryBeanMono = makeWebClientCall("http://COUNTRY" + countryContextName + "/"+addressModel.getCountryId(), COUNTRY_USER, COUNTRY_PASSWORD, CountryBean.class);
         Mono<DistrictBean> districtBeanMono = makeWebClientCall("http://DISTRICT" + districtContextPath +"/districtId/"+ addressModel.getDistrictId(), DISTRICT_USER, DISTRICT_PASSWORD, DistrictBean.class);
 
         return Mono.zip(stateBeanMono, districtBeanMono, countryBeanMono)
@@ -111,7 +111,7 @@ public class AddressService {
         setAddressFields(addressRequestBean, addressResponseBean);
 
         Mono<StateBean> stateBeanMono = makeWebClientCall("http://STATE" + stateContextName +"/stateById/"+ addressRequestBean.getState().getStateId(), STATE_USER, STATE_PASSWORD, StateBean.class);
-        Mono<CountryBean> countryBeanMono = makeWebClientCall("http://COUNTRY" + countryContextName +"/getCountry/"+ addressRequestBean.getCountry().getCountryId(), COUNTRY_USER, COUNTRY_PASSWORD, CountryBean.class);
+        Mono<CountryBean> countryBeanMono = makeWebClientCall("http://COUNTRY" + countryContextName +"/"+ addressRequestBean.getCountry().getCountryId(), COUNTRY_USER, COUNTRY_PASSWORD, CountryBean.class);
         Mono<DistrictBean> districtBeanMono = makeWebClientCall("http://DISTRICT" + districtContextPath +"/districtId/"+ addressRequestBean.getDistrict().getDistrictId(), DISTRICT_USER, DISTRICT_PASSWORD, DistrictBean.class);
 
         return Mono.zip(stateBeanMono, districtBeanMono, countryBeanMono)
